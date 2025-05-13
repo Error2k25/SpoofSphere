@@ -17,4 +17,4 @@ Now forward the port to the victim (For port forwarding, I'm using ngrok)
 Take a new Terminal && run this command: <br>
 ngrok http 3000
 
-That's it. Now wait for click of the victim.
+That's it. Now send the link and wait for click of the victim.
