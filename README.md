@@ -16,26 +16,36 @@
 📦 **Installation for Linux**: 🛠️
 
 🧰 ```bash
-sudo apt update``` <br>  
+sudo apt update
+``` <br>  
 🧰 ```bash
-sudo apt upgrade``` <br>  
+sudo apt upgrade
+``` <br>  
 🔽 ```bash
-git clone https://github.com/Error2k25/SpoofSphere.git``` <br>  
+git clone https://github.com/Error2k25/SpoofSphere.git
+``` <br>  
 📂 ```bash
-cd SpoofSphere``` <br>  
+cd SpoofSphere
+``` <br>  
 🧰 ```bash
-sudo apt install npm``` <br>  
+sudo apt install npm
+``` <br>  
 ⚙️ ```bash
-npm init -y``` <br>  
+npm init -y
+``` <br>  
 📦 ```bash
-npm install express``` <br>  
+npm install express
+``` <br>  
 🚀 ```bash
-node server.js```
+node server.js
+```
 
 🌐 Now forward the port to the victim (For port forwarding, I'm using ngrok)  
 
 🖥️ Take a new Terminal && run this command: <br>  
-🌐 ```ngrok http 3000```
+🌐 ```bash
+ngrok http 3000
+```
 
 ---
 
